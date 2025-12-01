@@ -1,0 +1,10 @@
+{
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "chapter5func.h": "c",
+        "stdint.h": "c",
+        "parse.h": "c",
+        "stackfunction.h": "c"
+    },
+    "makefile.configureOnOpen": false
+}
