@@ -12,6 +12,7 @@
 
 #define MAXLINE 1000
 
+/* Custom File comparison function */
 int32_t cmp_files(const char *file1, const char *file2){
     FILE *f1 = fopen(file1, "r");
     FILE *f2 = fopen(file2, "r");
@@ -26,10 +27,13 @@ int32_t cmp_files(const char *file1, const char *file2){
         char *t2 = fgets(str2, MAXLINE,f2);
         line_number++;
 
+        /* Check if files are identical or not */
         if(t1 == NULL && t2 == NULL){
             printf("Files are identical.\n");
             break;
         }
+
+        /* If any of the file meets the EOF first */
         if(!t1 || !t2){
             printf("Files differ at line%d:\n", line_number);
             if(t1) printf("File1: %s", str1);
@@ -39,6 +43,7 @@ int32_t cmp_files(const char *file1, const char *file2){
             break;
         }
 
+        /* Doing the string comparison of the file content */
         if(strcmp(str1, str2) != 0){
             printf("Files differ at line %d:\n", line_number);
             printf("File1: %s", str1);

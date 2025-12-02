@@ -16,6 +16,7 @@ int32_t main4();
 int32_t main5(int32_t argc, char *argv[]);
 int32_t main6();
 int32_t main7(int32_t argc, char *argv[]);
+int32_t main8();
 
 int32_t main(int32_t argc, char *argv[]) {
     int32_t choice;
@@ -52,7 +53,9 @@ int32_t main(int32_t argc, char *argv[]) {
         case 7:
             main7(argc, argv);
             break;
-            
+        case 8:
+            main8();
+            break;
         default:
             printf("Invalid choice\n");
             return 1;

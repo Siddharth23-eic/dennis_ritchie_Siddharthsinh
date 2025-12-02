@@ -30,9 +30,12 @@ int32_t exercise7_8(int32_t argc, char *argv[]){
         int32_t line_count = 0;
         int32_t page = 1;
 
+        /* Page header */
         printf("\n ----------- %s -- Page %d -----------\n", argv[i], page);
 
         while(fgets(line, MAXLINE, fp) != NULL){
+            
+            /* Checking all lines(Here 20) are filled in the page */
             if(line_count == LINES){
                 page++;
                 line_count = 0;

@@ -4,7 +4,8 @@
         "chapter5func.h": "c",
         "stdint.h": "c",
         "parse.h": "c",
-        "stackfunction.h": "c"
+        "stackfunction.h": "c",
+        "keyword.h": "c"
     },
     "makefile.configureOnOpen": false
 }

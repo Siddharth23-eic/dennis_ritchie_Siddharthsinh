@@ -76,4 +76,3 @@ int32_t exercise7_2() {
 
     return 0;
 }
-

@@ -14,6 +14,7 @@
 
 #define MAXLINES 1000
 
+/* Turn to upper case */
 char *touppercase(char *st) {
     char *temp = st;
     while (*st != '\0') {
@@ -24,6 +25,7 @@ char *touppercase(char *st) {
     return temp;
 }
 
+/* Turn to lower case */
 char *tolowercase(char *st){
     char *temp = st;
     while(*st != '\0'){

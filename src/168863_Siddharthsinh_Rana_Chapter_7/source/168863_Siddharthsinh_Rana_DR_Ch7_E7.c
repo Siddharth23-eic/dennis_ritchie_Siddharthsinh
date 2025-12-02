@@ -35,6 +35,7 @@ int32_t exercise7_7(int32_t argc, char *argv[]){
         int32_t line_number = 0;
         while(fgets(line, MAXLINE, fp) != NULL){
             line_number++;
+            /* Looking for the keyword from the file content */
             if(strstr(line, keyword) != NULL){
                 printf("%s: %d: %s", argv[i], line_number, line);
                 found++;
