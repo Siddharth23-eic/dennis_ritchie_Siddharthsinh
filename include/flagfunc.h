@@ -2,7 +2,7 @@
 #define FLAGFUNC_H
 
 #include <stdint.h>
-
+#define MAXLINES 5000
 /* global flags from your original implementation */
 extern int32_t numeric_flag;
 extern int32_t reverse_flag;

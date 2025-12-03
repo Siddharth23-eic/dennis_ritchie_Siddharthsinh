@@ -15,28 +15,67 @@
 
 #define BUF 4000
 
+/* Systemcall version of cat */
 void sys_call_cat(char *file){
     char buf[BUF];
-    int32_t n, fd = open(file, O_RDONLY);
+    int32_t n, file_descriptor;
 
-    while((n = read(fd, buf, BUF)) > 0)
+    if(file == NULL){
+        file_descriptor = 0;
+    }
+    else{
+        file_descriptor = open(file, O_RDONLY);
+        if(file_descriptor < 0){
+            printf("\nsys: Cannot open file %s\n", file);
+            return;
+        }
+    }
+
+    while((n = read(file_descriptor, buf, BUF)) > 0)
         write(1, buf, n);
     
-    close(fd);
+    close(file_descriptor);
 }
 
-void stdio_call_cat(char *file){
-    char bif[BUF];
+/* stdio version of cat */
+void stdio_cat(char *file){
+    char buf[BUF];
     size_t n;
-    
-    FILE *fp = fopen(file, "r");
-    while((n = fread(buf, 1, BUF, fp)) > 0)
+    FILE *file_pointer;
+
+    if(file == NULL){
+        file_pointer = stdin;
+    }else{
+        file_pointer = fopen(file, "r");
+        if(file_pointer == NULL){
+            printf("\nStdio: cannot open file %s\n", file);
+            return;
+        }
+    }
+    while((n = fread(buf, 1, BUF, file_pointer)) > 0)
         fwrite(buf, 1, n, stdout);
     
-    fclose(fp);
+    if(file != NULL)
+        fclose(file_pointer);
 }
 
 int32_t exercise8_1(int32_t argc, char *argv[]){
-    
+    clock_t start, end;
+    if(argc == 1){
+        sys_call_cat(NULL);
+        stdio_cat(NULL);
+    }
+    start = clock();
+    for(int32_t i = 1; i < argc; i++)
+        sys_call_cat(argv[i]);
+    end = clock();
+    printf("syscall cat time %f seconds\n", (double)(end - start)/CLOCKS_PER_SEC);
+
+    start = clock();    
+    for(int32_t i = 1; i < argc; i++)
+            stdio_cat(argv[i]);
+    end = clock();
+    printf("Stdio cat time: %f seconds", (double)(end - start)/CLOCKS_PER_SEC);
+
     return 0;
 }
